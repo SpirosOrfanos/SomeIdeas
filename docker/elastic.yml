@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+    es_net:
+        driver: bridge
+        
+services:
+# Kibana
+  kibana:
+    container_name: kb-container
+    image: docker.elastic.co/kibana/kibana:7.11.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    networks:
+      - es_net
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+# Elastic
+  elasticsearch:
+    container_name: es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - es_net
+    ports:
+      - 9200:9200
+volumes:
+   redis_data:
+      driver: local   
+   db:
+      driver: local
+
+ 
