@@ -78,6 +78,27 @@ config (app congiguration classes e.g. cache configuration)
 App has data some initial config items along with their details in dockerized image.
 
 In case you need to test to another MySql-DB instance check init.sql under docker/db folder.
+### Tables
+
+
+**BIN_INFO**
+
+<br>
+ Column: id varchar PK (holds bin value)
+
+
+<br> Column: country varchar  (holds country of bin)
+<br>
+
+
+**CLEARANCE**
+<br>
+ Column: id varchar PK (holds country value)
+<br> Column: cost bigdecimal  (holds cost for country)
+<br>
+
+
+
 
 ## Lets play with docker
 
@@ -146,7 +167,7 @@ You should see a histogram graph and some recent log entries:
 
 * caching strategy
 
-* API calls safeguard with anither tool like keycloak or an RBAC fmw
+* API calls safeguard with anither tool like keycloak or an RBAC fmw (basically a gateway would be the proper way)
 
 
 ## SAMPLES
