@@ -2,6 +2,8 @@ package com.etraveli.cardcost.service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,14 +36,16 @@ public class BinInfoServiceDao implements DaoService<BinInfo, String> {
 
   @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
   @Override
+  @CachePut(key = "#t.id", value = "bincountry")
   public BinInfo save(BinInfo t) {
+    
     return binInfoRepository.save(t);
   }
 
-  // Cache
   @Override
-  public Optional<BinInfo> get(String k) {
-    return binInfoRepository.findById(k);
+  @Cacheable(key = "#id", value = "bincountry")
+  public Optional<BinInfo> get(String id) {
+    return binInfoRepository.findById(id);
   }
 
   @Override

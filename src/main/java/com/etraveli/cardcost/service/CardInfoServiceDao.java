@@ -2,6 +2,9 @@ package com.etraveli.cardcost.service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,32 +23,34 @@ public class CardInfoServiceDao implements DaoService<ClearanceCardCost, String>
     this.clearanceCardCostRepository = clearanceCardCostRepository;
   }
 
-  // Cache update
   @Override
   @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+  @CachePut(key = "#t.id", value = "countrycost")
   public void update(ClearanceCardCost t) {
     clearanceCardCostRepository.save(t);
 
   }
 
-  // Cache delete
   @Override
   @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-  public void delete(String k) {
-    clearanceCardCostRepository.deleteById(k);
+  @CacheEvict(key = "#id", value = "countrycost")
+  public void delete(String id) {
+    clearanceCardCostRepository.deleteById(id);
 
   }
 
   @Override
   @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+  @CachePut(key = "#t.id", value = "countrycost")
   public ClearanceCardCost save(ClearanceCardCost t) {
     return clearanceCardCostRepository.save(t);
   }
 
-  // Cache
+  
   @Override
-  public Optional<ClearanceCardCost> get(String k) {
-    return clearanceCardCostRepository.findById(k);
+  @Cacheable(key = "#id", value = "countrycost")
+  public Optional<ClearanceCardCost> get(String id) {
+    return clearanceCardCostRepository.findById(id);
   }
 
   @Override

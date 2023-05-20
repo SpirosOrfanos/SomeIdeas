@@ -1,7 +1,6 @@
 package com.etraveli.cardcost.service.internal;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import com.etraveli.cardcost.domain.dto.CardCost;
 import com.etraveli.cardcost.service.CardInfoServiceDao;
 
 @Service
+
 public class ManagementQueryService {
 
   private CardInfoServiceDao cardInfoServiceDao;

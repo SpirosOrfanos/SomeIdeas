@@ -15,9 +15,11 @@ import com.etraveli.cardcost.domain.dto.CardCost;
 import com.etraveli.cardcost.exceptions.ActionNotSupportedException;
 import com.etraveli.cardcost.service.BinInfoServiceDao;
 import com.etraveli.cardcost.service.CardInfoServiceDao;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Service
+@Slf4j
 public class CardInfoService {
 
   private BinRestClient binRestClient;
@@ -41,6 +43,7 @@ public class CardInfoService {
   }
 
   public CardCost retrieveBinInfo(String bin) {    
+    log.info("{}", bin);
     Optional<BinInfo> binInfoOpt = binInfoServiceDao.get(bin);
     if (binInfoOpt.isPresent()) {
       String country = binInfoOpt.map(BinInfo::getCountry)

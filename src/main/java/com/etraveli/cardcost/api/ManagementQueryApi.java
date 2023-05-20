@@ -13,10 +13,12 @@ import com.etraveli.cardcost.annotations.OnlyBoAuth;
 import com.etraveli.cardcost.domain.dto.CardCost;
 import com.etraveli.cardcost.service.internal.ManagementQueryService;
 import jakarta.validation.constraints.Max;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Validated
 @RequestMapping("/api/v1/admin")
+@Slf4j
 public class ManagementQueryApi {
 
   @Autowired

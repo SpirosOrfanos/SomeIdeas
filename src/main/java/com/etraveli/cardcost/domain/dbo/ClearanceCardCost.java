@@ -1,5 +1,6 @@
 package com.etraveli.cardcost.domain.dbo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "clearance")
-public class ClearanceCardCost {
+public class ClearanceCardCost implements Serializable{
   
   @Id
   private String id;

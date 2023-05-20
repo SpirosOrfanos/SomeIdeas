@@ -17,9 +17,11 @@ import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
   private final UserRepository repository;
   private final TokenRepository tokenRepository;
@@ -60,7 +62,7 @@ public class AuthenticationService {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      log.error("", e);
     }
 
   }

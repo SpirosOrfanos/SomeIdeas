@@ -1,5 +1,6 @@
 package com.etraveli.cardcost.domain.dbo;
 
+import java.io.Serializable;
 import com.etraveli.cardcost.enums.TokenType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Token {
+public class Token implements Serializable {
 
   @Id
   @GeneratedValue

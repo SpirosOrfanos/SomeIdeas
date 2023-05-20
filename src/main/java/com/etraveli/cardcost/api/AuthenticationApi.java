@@ -12,11 +12,13 @@ import com.etraveli.cardcost.service.internal.AuthenticationService;
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthenticationApi {
+  
 
   @Autowired
   private AuthenticationService authenticationService;

@@ -17,10 +17,12 @@ import com.etraveli.cardcost.annotations.OnlyBoAuth;
 import com.etraveli.cardcost.domain.dto.CardCost;
 import com.etraveli.cardcost.service.internal.ManagementCommandService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Validated
 @RequestMapping("/api/v1/admin")
+@Slf4j
 public class ManagementCommandApi {
 
   @Autowired
@@ -29,6 +31,7 @@ public class ManagementCommandApi {
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   @OnlyBoAuth
   public ResponseEntity<CardCost> createCard(@Valid @RequestBody CardCost cardCost) {
+    log.info("{}", cardCost);
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(managementCommandService.create(cardCost));
   }
@@ -40,6 +43,7 @@ public class ManagementCommandApi {
   public void updateCard(
       @PathVariable(name = "country", value = "country", required = true) String country,
       @RequestBody CardCost cardCost) {
+    log.info("{} {}", country, cardCost);
     managementCommandService.update(country, cardCost);
   }
 
@@ -48,6 +52,7 @@ public class ManagementCommandApi {
   @OnlyBoAuth
   public void deleteCard(
       @PathVariable(name = "country", value = "country", required = true) String country) {
+    log.info("{}", country);
     managementCommandService.delete(country);
   }
 

@@ -1,5 +1,6 @@
 package com.etraveli.cardcost.domain.dbo;
 
+import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "bin_info")
-public class BinInfo {
+public class BinInfo implements Serializable {
   @Id
   private String id;
   @Column(name = "COUNTRY")
