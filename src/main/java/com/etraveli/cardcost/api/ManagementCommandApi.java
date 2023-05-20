@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.etraveli.cardcost.annotations.OnlyBoAuth;
 import com.etraveli.cardcost.domain.dto.CardCost;
@@ -34,20 +35,20 @@ public class ManagementCommandApi {
 
   @PatchMapping(value = {"/{country}"}, path = {"/{country}"},
       produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(value = HttpStatus.NO_CONTENT)
   @OnlyBoAuth
-  public ResponseEntity updateCard(
+  public void updateCard(
       @PathVariable(name = "country", value = "country", required = true) String country,
       @RequestBody CardCost cardCost) {
     managementCommandService.update(country, cardCost);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @DeleteMapping(value = {"/{country}"}, path = {"/{country}"})
+  @ResponseStatus(value = HttpStatus.NO_CONTENT)
   @OnlyBoAuth
-  public ResponseEntity deleteCard(
+  public void deleteCard(
       @PathVariable(name = "country", value = "country", required = true) String country) {
     managementCommandService.delete(country);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   /* In case we need batch */

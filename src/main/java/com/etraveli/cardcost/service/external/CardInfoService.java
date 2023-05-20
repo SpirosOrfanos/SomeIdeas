@@ -40,9 +40,7 @@ public class CardInfoService {
 
   }
 
-  public CardCost retrieveBinInfo(String bin) {
-
-    
+  public CardCost retrieveBinInfo(String bin) {    
     Optional<BinInfo> binInfoOpt = binInfoServiceDao.get(bin);
     if (binInfoOpt.isPresent()) {
       String country = binInfoOpt.map(BinInfo::getCountry)

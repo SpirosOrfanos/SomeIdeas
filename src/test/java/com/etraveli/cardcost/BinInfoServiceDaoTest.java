@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 
 @SpringBootTest
 @Transactional
-public class BinInfoServiceDaoTest {
+class BinInfoServiceDaoTest {
 
   @Autowired
   private BinInfoServiceDao binInfoServiceDao;
