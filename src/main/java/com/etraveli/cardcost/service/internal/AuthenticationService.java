@@ -1,10 +1,8 @@
 package com.etraveli.cardcost.service.internal;
 
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.etraveli.cardcost.config.JwtService;
 import com.etraveli.cardcost.domain.dbo.Token;
@@ -12,8 +10,8 @@ import com.etraveli.cardcost.domain.dbo.User;
 import com.etraveli.cardcost.domain.dto.AuthRequest;
 import com.etraveli.cardcost.domain.dto.AuthResponse;
 import com.etraveli.cardcost.enums.TokenType;
-import com.etraveli.cardcost.service.external.TokenRepository;
-import com.etraveli.cardcost.service.external.UserRepository;
+import com.etraveli.cardcost.service.repository.TokenRepository;
+import com.etraveli.cardcost.service.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +23,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationService {
   private final UserRepository repository;
   private final TokenRepository tokenRepository;
-  private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
@@ -40,7 +37,8 @@ public class AuthenticationService {
     return AuthResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
   }
 
-  public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void refreshToken(HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
     try {
       final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
       final String refreshToken;
@@ -64,7 +62,7 @@ public class AuthenticationService {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+
   }
 
   private void revokeAllUserTokens(User user) {

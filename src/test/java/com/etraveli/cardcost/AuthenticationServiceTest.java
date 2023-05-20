@@ -18,9 +18,10 @@ import com.etraveli.cardcost.enums.TokenType;
 import com.etraveli.cardcost.domain.dbo.User;
 import com.etraveli.cardcost.domain.dto.AuthRequest;
 import com.etraveli.cardcost.domain.dto.AuthResponse;
-import com.etraveli.cardcost.service.external.TokenRepository;
-import com.etraveli.cardcost.service.external.UserRepository;
 import com.etraveli.cardcost.service.internal.AuthenticationService;
+import com.etraveli.cardcost.service.repository.TokenRepository;
+import com.etraveli.cardcost.service.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Objects;
@@ -29,6 +30,7 @@ import java.util.UUID;
 @Tag("AuthenticationServiceTest")
 
 @SpringBootTest
+@Transactional
 public class AuthenticationServiceTest {
 
   @Autowired

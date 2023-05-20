@@ -1,10 +1,8 @@
 package com.etraveli.cardcost.config;
 
-import static com.etraveli.cardcost.enums.Permission.BO_CREATE;
 import static com.etraveli.cardcost.enums.Permission.BO_DELETE;
 import static com.etraveli.cardcost.enums.Permission.BO_READ;
 import static com.etraveli.cardcost.enums.Permission.BO_UPDATE;
-import static com.etraveli.cardcost.enums.Permission.USER_READ;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.PATCH;
@@ -51,16 +49,6 @@ public class WebSecurityConfig {
         "/swagger-ui/**",
         "/swagger-ui.html")
     .permitAll()
-    /*.requestMatchers(GET, "/api/v1/management/**")
-      .hasAnyRole(BO_READ.name())
-     .requestMatchers(POST, "/api/v1/management/**")
-      .hasAnyRole(BO_CREATE.name())
-     .requestMatchers(PATCH, "/api/v1/management/**")
-      .hasAnyRole(BO_UPDATE.name())
-     .requestMatchers(DELETE, "/api/v1/management/**")
-      .hasAnyRole(BO_DELETE.name())
-    .requestMatchers(GET, "/payment-cards-cost")
-      .hasAnyRole(USER_READ.name())*/
     .requestMatchers("/api/v1/management/**")
     .hasAnyRole(RoleTypeEnum.BO.name())
     .requestMatchers(GET, "/api/v1/management/**")

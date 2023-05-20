@@ -2,7 +2,6 @@ package com.etraveli.cardcost.domain.dto;
 
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +16,5 @@ public class CardBinCost implements Serializable {
   @JsonProperty("card_number")
   @Size(min = 16, message = "Minimum of 16 digits required")
   private String cardNumber;
-  
+
 }

@@ -9,5 +9,6 @@ import reactor.core.publisher.Mono;
 public interface BinRestClient {
 
   @GetExchange("/v1/{bin}")
-  Mono<ResponseItem> get(@PathVariable String bin, @RequestParam(name = "api_key", value = "api_key") String api_key);
+  Mono<ResponseItem> get(@PathVariable String bin,
+      @RequestParam(name = "api_key", value = "api_key") String api_key);
 }

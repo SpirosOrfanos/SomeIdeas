@@ -1,7 +1,6 @@
 package com.etraveli.cardcost.config;
 
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,21 +11,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.etraveli.cardcost.service.external.UserRepository;
+import com.etraveli.cardcost.service.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
-  
+
   private final UserRepository repository;
- 
+
 
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> repository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
-  
+
   @Bean
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -34,9 +34,10 @@ public class AppConfig {
     authProvider.setPasswordEncoder(passwordEncoder());
     return authProvider;
   }
-  
+
   @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+      throws Exception {
     return config.getAuthenticationManager();
   }
 
@@ -44,8 +45,7 @@ public class AppConfig {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-  
-  
+
 
 
 }

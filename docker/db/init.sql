@@ -33,9 +33,27 @@ CREATE TABLE cardcost.token (
   KEY `FKiblu4cjwvyntq3ugo31klp1c6` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+
+CREATE TABLE clearance (
+  id varchar(45) NOT NULL,
+  amount` decimal(3,0) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE cardcost.bin_info (
+  id VARCHAR(45) NOT NULL,
+  country VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id));
+
+
 INSERT INTO cardcost._user (id, username, password, role) 
 VALUES (1, 'adminuser', '$2a$10$H3Yd7DZvq4nzJMquALmAH.WxUnQWaO6T6AxvFtXm0mA3M.kgN14rm', 'BO');
 INSERT INTO cardcost._user (id, username, password, role) 
 VALUES (2, 'simpleuser', '$2a$10$GlciUEs1mBM9zqzW.AX9auIwqYQ.3Gf8.jdkqKys8a/1v0SoDbYqG', 'USER');
 insert into cardcost._user_seq (next_val) values (101);
 insert into cardcost.token_seq (next_val) values (101);
+
+insert into cardcost.clearance (id, amount) values ("eg", 50);
+insert into cardcost.clearance (id, amount) values ("us", 100);
+insert into cardcost.clearance (id, amount) values ("other", 200);

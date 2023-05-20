@@ -28,6 +28,12 @@ public enum ApiErrorEnum {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
     }
   },
+  BAD_CREDENTIALS_EXCEPTION("Api response error",HttpStatus.UNAUTHORIZED, "1-0004-1"){
+    @Override
+    public ApiError create() {
+      return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
+    }
+  },
   USER_ALREADY_EXISTS("Api response error",HttpStatus.CONFLICT, "1-0004"){
     @Override
     public ApiError create() {
@@ -35,6 +41,13 @@ public enum ApiErrorEnum {
     }
   },
   API_NOT_SUPPORTED_EXCEPTION("Api response error",HttpStatus.PRECONDITION_FAILED, "1-0003"){
+    @Override
+    public ApiError create() {
+      return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
+    }
+  },
+  
+  EXT_COMM_EXCEPTION("Api response error",HttpStatus.EXPECTATION_FAILED, "1-1003"){
     @Override
     public ApiError create() {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
