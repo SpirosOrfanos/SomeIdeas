@@ -22,7 +22,7 @@ import com.etraveli.cardcost.utils.TestUtils;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
-public class ManagementCommandApiTest {
+class ManagementCommandApiTest {
   @Autowired
   protected MockMvc mockMvc;
   

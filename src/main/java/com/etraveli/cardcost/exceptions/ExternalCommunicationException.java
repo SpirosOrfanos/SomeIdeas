@@ -7,7 +7,7 @@ public class ExternalCommunicationException extends RuntimeException{
   }
   
   public ExternalCommunicationException(int value) {
-    super(Integer.valueOf(value).toString());
+    super(Integer.toString(value));
   }
 
   public ExternalCommunicationException(String message, Throwable cause, boolean enableSuppression,

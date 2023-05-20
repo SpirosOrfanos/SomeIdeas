@@ -45,7 +45,6 @@ public class CardInfoServiceDao implements DaoService<ClearanceCardCost, String>
   // Cache
   @Override
   public Optional<ClearanceCardCost> get(String k) {
-    System.out.println("cardInfoServiceDao > get "+ k);
     return clearanceCardCostRepository.findById(k);
   }
 

@@ -17,7 +17,7 @@ import com.etraveli.cardcost.service.internal.ManagementQueryService;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
-public class ManagementQueryApiTest {
+class ManagementQueryApiTest {
 
   @Autowired
   protected MockMvc mockMvc;

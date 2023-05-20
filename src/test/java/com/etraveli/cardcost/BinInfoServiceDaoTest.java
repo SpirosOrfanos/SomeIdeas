@@ -19,7 +19,7 @@ public class BinInfoServiceDaoTest {
   private BinInfoServiceDao binInfoServiceDao;
   
   @Test
-  public void test() {
+  void test() {
     
     BinInfo binInfo = BinInfo.builder().country("gr").id("445533").build();
     assertThrows(ActionNotSupportedException.class, () -> binInfoServiceDao.delete(""));
@@ -28,8 +28,8 @@ public class BinInfoServiceDaoTest {
     assertThrows(ActionNotSupportedException.class, () -> binInfoServiceDao.update(binInfo));
     
     BinInfo res = binInfoServiceDao.save(binInfo);
-    assertEquals(res.getCountry(), "gr");
-    assertEquals(binInfoServiceDao.get("gr").get().getCountry(), "gr");
+    assertEquals("gr", res.getCountry());
+    assertEquals("gr", binInfoServiceDao.get("445533").get().getCountry());
     
   }
 }

@@ -27,7 +27,7 @@ public class CardInfoService {
   @Qualifier("binInfoServiceDao")
   private BinInfoServiceDao binInfoServiceDao;
 
-  private Mono<CardCost> fallbackMono = Mono.defer(() -> Mono.empty());
+  private Mono<CardCost> fallbackMono = Mono.defer(Mono::empty);
 
   public CardInfoService(BinRestClient binRestClient,
       BinRestClientConfigProperties binRestClientConfigProperties,
@@ -55,7 +55,7 @@ public class CardInfoService {
         .map(ResponseItem::getData).map(ResponseItemData::getCountry)
         .map(ResponseItemDataCountry::getCode)
         .doOnSuccess(code -> binInfoServiceDao
-            .save(BinInfo.builder().country(code.toString()).id(bin).build()))
+            .save(BinInfo.builder().country(code).id(bin).build()))
         .map(code -> cardCost.apply(code)).switchIfEmpty(fallbackMono)
         .onErrorResume(e -> fallbackMono).block();
   }

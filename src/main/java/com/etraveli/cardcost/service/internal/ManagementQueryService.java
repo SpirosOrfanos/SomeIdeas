@@ -20,10 +20,9 @@ public class ManagementQueryService {
   }
   
   public List<CardCost> retrieve(Integer page, Integer size) {
-    List<CardCost> costs = cardInfoServiceDao.getPaginated(PageRequest.of(page, size))
-    .stream()
-    .map(val -> CardCost.builder().cost(val.getAmount()).country(val.getId()).build())
-    .collect(Collectors.toList());
-    return costs;
+    return cardInfoServiceDao.getPaginated(PageRequest.of(page, size))
+        .stream()
+        .map(val -> CardCost.builder().cost(val.getAmount()).country(val.getId()).build())
+        .collect(Collectors.toList());
   }
 }

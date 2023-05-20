@@ -21,7 +21,7 @@ import com.etraveli.cardcost.utils.TestUtils;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AuthenticationApiServiceTest {
+class AuthenticationApiServiceTest {
 
 
   @Autowired

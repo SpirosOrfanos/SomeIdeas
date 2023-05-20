@@ -31,7 +31,7 @@ import java.util.UUID;
 
 @SpringBootTest
 @Transactional
-public class AuthenticationServiceTest {
+class AuthenticationServiceTest {
 
   @Autowired
   AuthenticationService authenticationService;

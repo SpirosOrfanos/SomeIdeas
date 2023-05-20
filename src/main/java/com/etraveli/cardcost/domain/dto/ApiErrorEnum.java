@@ -40,7 +40,7 @@ public enum ApiErrorEnum {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
     }
   },
-  API_NOT_SUPPORTED_EXCEPTION("Api response error",HttpStatus.PRECONDITION_FAILED, "1-0003"){
+  API_NOT_SUPPORTED_EXCEPTION("Api response error",HttpStatus.PRECONDITION_FAILED, "1-0003-2"){
     @Override
     public ApiError create() {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
@@ -55,14 +55,14 @@ public enum ApiErrorEnum {
   },
   
   
-  CONVERSION_FAILED_ERROR("Api conversion error",HttpStatus.BAD_REQUEST, "1-0003"){
+  CONVERSION_FAILED_ERROR("Api conversion error",HttpStatus.BAD_REQUEST, "1-0003-3"){
     @Override
     public ApiError create() {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());
     }
   },
   
-  NOT_FOUND_ERROR("No entityt found",HttpStatus.NOT_FOUND, "1-0003"){
+  NOT_FOUND_ERROR("No entityt found",HttpStatus.NOT_FOUND, "1-0003-4"){
     @Override
     public ApiError create() {
       return new ApiError(this.getDesc(), this.getHttpCode(), this.getCode());

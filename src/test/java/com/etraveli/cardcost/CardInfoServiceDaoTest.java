@@ -14,24 +14,24 @@ import jakarta.transaction.Transactional;
 
 @SpringBootTest
 @Transactional
-public class CardInfoServiceDaoTest {
+class CardInfoServiceDaoTest {
 
   @Autowired
   private CardInfoServiceDao cardInfoServiceDao;
   
   @Test
-  public void update() {
+  void update() {
     ClearanceCardCost cost = ClearanceCardCost.builder().amount(BigDecimal.TEN)
     .id("gr")
     .build();
     ClearanceCardCost clearanceCardCost = cardInfoServiceDao
         .save(cost);
-    assertEquals(clearanceCardCost.getAmount(), BigDecimal.TEN);
+    assertEquals(BigDecimal.TEN, clearanceCardCost.getAmount());
     assertThrows(ActionNotSupportedException.class, () -> cardInfoServiceDao.getAll());
     clearanceCardCost.setAmount(BigDecimal.ONE);
     cardInfoServiceDao.update(clearanceCardCost);
-    assertEquals(cardInfoServiceDao.get("gr").get().getAmount(), new BigDecimal("1.00"));
-    assertEquals(cardInfoServiceDao.getPaginated(PageRequest.of(0, 10)).size(), 1);
+    assertEquals(new BigDecimal("1.00"), cardInfoServiceDao.get("gr").get().getAmount());
+    assertEquals(1, cardInfoServiceDao.getPaginated(PageRequest.of(0, 10)).size());
     cardInfoServiceDao.delete("gr");
     assertEquals(cardInfoServiceDao.getPaginated(PageRequest.of(0, 10)).size(), 0);
   }
